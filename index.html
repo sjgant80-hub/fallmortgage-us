@@ -1015,7 +1015,7 @@ function newBlankClient(adviserId){
  adviserId:adviserId||(state.advisers[0]&&state.advisers[0].id)||'',
  engagement:{startedAt:Date.now(),type:'transactional',feeBasis:'commission-only',feeAgreementHash:'',feeAgreementSignedAt:null,initialFee:0,ongoingFee:0,nextReviewDue:null},
  notes:[],
- links:{falladviserScenarios:[],fallpracticeFeeLedgerIds:[],fallpaperDocumentIds:[],fallmortgage-usCaseIds:[]},
+ links:{falladviserScenarios:[],fallpracticeFeeLedgerIds:[],fallpaperDocumentIds:[],fallmortgageCaseIds:[]},
  // mortgage-client extensions
  creditHistoryNotes:'',
  existingMortgages:[],
@@ -1564,7 +1564,7 @@ async function attachClient(caseId,clientId){
  if(!mc.applicants.length)mc.applicants.push({clientId,employmentType:'employed',basicSalary:0,bonus:0,otherIncome:0,creditScore:0,adverseHistory:false});
  else mc.applicants[0].clientId=clientId;
  const cl=state.clients.find(x=>x.id===clientId);
- if(cl){cl.links=cl.links||{};cl.links.fallmortgage-usCaseIds=cl.links.fallmortgage-usCaseIds||[];if(!cl.links.fallmortgage-usCaseIds.includes(mc.id))cl.links.fallmortgage-usCaseIds.push(mc.id);await saveClient(cl,'linked to case '+mc.ref)}
+ if(cl){cl.links=cl.links||{};cl.links.fallmortgageCaseIds=cl.links.fallmortgageCaseIds||[];if(!cl.links.fallmortgageCaseIds.includes(mc.id))cl.links.fallmortgageCaseIds.push(mc.id);await saveClient(cl,'linked to case '+mc.ref)}
  await saveCase(mc,'primary client linked');
  closeModal();render();
 }
